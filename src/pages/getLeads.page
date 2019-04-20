@@ -1,0 +1,29 @@
+<apex:page controller="LeadsController">
+	<apex:sectionHeader title="Cars Related With Leads"/>
+		<apex:form>
+			<apex:pageBlock title="Cars - Leads">
+				<apex:pageBlockSection columns="1">
+					<apex:pageblockSectionItem>
+						<apex:outputLabel value="Leads"/>
+							<apex:outputPanel styleClass="requiredInput" layout="block">
+							<apex:outputPanel styleClass="requiredBlock" layout="block"/>
+							<apex:selectList size="1" value="{!oLead.Id}">
+            					<apex:selectOption itemValue="" itemLabel="Select Lead"/>
+								<apex:selectoptions value="{!leads}"/>
+								<apex:actionSupport event="onchange" reRender="cars"/>
+							</apex:selectList>
+							</apex:outputPanel>
+					</apex:pageblockSectionItem>
+					<apex:pageblockSectionItem>
+						<apex:outputLabel value="Cars"/>
+							<apex:outputPanel styleClass="requiredInput" layout="block">
+							<apex:outputPanel styleClass="requiredBlock" layout="block"/>
+							<apex:selectList size="1" id="cars">
+								<apex:selectoptions value="{!cars}"/>
+							</apex:selectList>
+							</apex:outputPanel>
+					</apex:pageblockSectionItem>
+				</apex:pageBlockSection>
+			</apex:pageBlock>
+		</apex:form>		
+</apex:page>

@@ -1,0 +1,17 @@
+<apex:page Controller="LeadsController" docType="html-5.0">
+	<apex:form>
+    		<apex:pageBlock>
+    			<apex:pageBlockSection title="New Trigger" columns="3">
+			    	<apex:inputfield label="First Name" id="firstName" type="text" value="{!oLead.firstname}"/>
+			    	<apex:inputfield label="Last Name" id="lastName" type="text" value="{!oLead.lastname}"/>
+			    	<apex:inputfield label="Company" id="company" type="text" value="{!oLead.company}"/>
+			    	<apex:inputfield label="Phone" type="text" id="phone" value="{!oLead.company}"/>
+			    	<apex:inputfield label="Email" id="email" type="text" value="{!oLead.email}" />
+			    	<apex:inputfield label="Fax" type="text" id="fax" value="{!oLead.fax}"/>
+			    	<apex:inputfield label="Status" type="text" id="status" value="{!oLead.status}"/>
+			    	<apex:inputfield label="Description" type="text" id="description" value="{!oLead.description}"/>
+			    	<apex:commandButton value="Save" action="{!saveLead}"/>		    				    	
+    			</apex:pageBlockSection>    			
+		</apex:pageBlock>
+ 	</apex:form>
+</apex:page>

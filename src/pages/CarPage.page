@@ -1,0 +1,81 @@
+<apex:page Controller="CarController"  docType="html-5.0">
+	<apex:form>
+    		<apex:pageBlock>
+    			<apex:pageBlockSection title="Car Information" columns="3">
+			    	<apex:inputfield label="Price" id="price" type="number" value="{!oCar.price__c}"/>
+			    	<apex:inputfield label="Tax" id="tax" type="number" value="{!oCar.tax__c}"/>
+			    	<apex:inputfield label="Model Year" id="modelYear" type="text" value="{!oCar.modelYear__c}"/>
+			    	<apex:inputfield label="Registration Plate" type="text" id="registrationPlate" value="{!oCar.registrationPlate__c}"/>
+			    	<apex:inputfield label="Name" id="name" type="text" value="{!oCar.Name}" />
+			    	<apex:inputfield label="Down Payment" type="number" id="downPayment" value="{!oCar.downPayment__c}"/>
+			    	<apex:inputfield label="Leasing" type="number" id="leasing" value="{!oCar.leasing__c}"/>
+			    	<apex:selectList size="1" value="{!oCar.Lead__c}">
+						<apex:selectOptions value="{!leads}"></apex:selectOptions>
+					</apex:selectList>
+			    	<apex:commandButton value="Save" action="{!saveCar}"/>    	            
+    			</apex:pageBlockSection>    			
+		</apex:pageBlock>
+ 	</apex:form>
+ 	<div class="slds">
+ 			<div class="slds-container--center slds-container--medium">
+ 				<div class="slds-page-header slds-theme--alt-inverse">Calculate Leasing</div>
+                	<form class="slds-form--horizontal" name="myForm">
+                    	<fieldset class="slds-form-element slds-box slds-theme--shade">
+                        	<div class="slds-grid slds-wrap">
+                            	<section class="slds-col--padded slds-size--1-of-2 slds-medium-size--3-of-6 slds-large-size--6-of-12">
+                                 <div class="slds-container--left slds-container--small">
+                                    <div class="slds-form-element slds-is-required">            
+                                        <label class="slds-form-element__label" for="fPriceLeasing">Price</label>
+                                        <div class="slds-form-element__control">
+                                        	<input name="fPriceLeasing" id="fPriceLeasing" type="number" class="slds-input" required="true"/>                       
+                                    	</div>
+                                    </div>
+                                    <div class="slds-form-element slds-is-required">            
+                                        <label class="slds-form-element__label" for="fTaxLeasing">Tax</label>
+                                        <div class="slds-form-element__control">
+                                        	<input name="fTaxLeasing" id="fTaxLeasing" type="number" class="slds-input" required="true"/>                       
+                                    	</div>
+                                    </div>
+                                    <div class="slds-form-element slds-is-required">            
+                                        <label class="slds-form-element__label" for="fDown">Down Payment</label>
+                                        <div class="slds-form-element__control">
+                                        	<input name="fDownLeasing" id="fDownLeasing" type="number" class="slds-input" required="true"/>                       
+                                    	</div>
+                                    </div>
+                                    <div class="slds-form-element slds-is-required">            
+                                        <label class="slds-form-element__label" for="fLeasing">Leasing</label>
+                                        <div class="slds-form-element__control">
+                                        	<input name="fLeasingForm" id="fLeasingForm" type="number" class="slds-input" readonly="readonly"/>                       
+                                    	</div>
+                                    </div>
+                                    <div align="left">
+                                    	<input type="button" value="Calculate" onclick="calculateLeasing()"/>                                                                    	       
+                            		</div>
+                            	</div>
+                        	</section>
+                    	</div>
+                	</fieldset>
+            	</form>
+        	</div>
+    	</div> 		
+	<script>
+	function calculateLeasing(){
+		var fPrice = document.getElementById('fPriceLeasing').value;
+		var fTax= document.getElementById('fTaxLeasing').value;
+		var fDown = document.getElementById('fDownLeasing').value;
+		if(fPrice != "" && fTax != "" && fDown != ""){
+			fPrice = parseInt(fPrice);
+			fTax = parseInt(fTax);
+			fDown = parseInt(fDown);
+			fLeasing = ((fPrice + fTax) - fDown) /84;
+			fLeasing = fLeasing.toFixed(2);
+			document.getElementById('fLeasingForm').value= fLeasing;		
+		}else{
+			alert('Remember full all the fields.');
+			document.getElementById("fPriceLeasing").value='';
+			document.getElementById('fTaxLeasing').value='';
+			document.getElementById('fDownLeasing').value='';			
+		}				
+	}
+	</script>     	 
+</apex:page>

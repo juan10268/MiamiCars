@@ -1,0 +1,13 @@
+<apex:page controller="CarController">
+	<apex:pageBlock title="Hello {!$User.FirstName}. Look your Cars">
+        <apex:pageBlockTable value="{!cars}" var="ct">
+        	<apex:column headerValue="Price" value="{!ct.price__c}"/>  
+        	<apex:column headerValue="Tax" value="{!ct.tax__c}"/> 
+        	<apex:column headerValue="Model Year" value="{!ct.modelYear__c}"/>  
+        	<apex:column headerValue="Registration Plate" value="{!ct.registrationPlate__c}"/>        	      	      	
+		    <apex:column headerValue="Name" value="{!ct.Name}"/>
+		    <apex:column headerValue="FullName" value="{!ct.fullName__c}"/>
+		    <apex:column headerValue="FullPrice" value="{!ct.fullPrice__c}"/>
+		</apex:pageBlockTable>
+    </apex:pageBlock>
+</apex:page>
